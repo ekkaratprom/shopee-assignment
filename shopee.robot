@@ -28,15 +28,7 @@ ${TIME}    15s
     Click Element    //div[@class="stardust-popover"]
 ปิด Google Chrome
     Close Browser
-ซื้อสินค้าบน Shopee ผ่าน Chrome
-    กดเลือกภาษาอังกฤษ
-    กดซื้อเลย
-    พิมพ์อีเมล์
-    พิมพ์พาสเวิร์ด
-    กด Enter
-    หยุดรอพิมพ์ OTP
-    กดตะกร้าสินค้า
-    
+
 *** Test Cases ***
 ซื้อสินค้าบน Shopee ผ่าน Chrome
     กดเลือกภาษาอังกฤษ
