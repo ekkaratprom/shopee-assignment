@@ -28,7 +28,7 @@ ${TIME}    90s
 หยุดรอพิมพ์ OTP
     Sleep    ${TIME}
 กดตะกร้าสินค้า
-    Click Element    //div[@class="stardust-popover"]
+    Click Element    //div[@class="cart-drawer-container"]
 ปิด Google Chrome
     Close Browser
 
