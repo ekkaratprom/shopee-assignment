@@ -1,6 +1,6 @@
 *** Settings **
 Library    SeleniumLibrary
-Test Setup    เปิด Browser
+Test Setup    เปิด Shopee ด้วย Google Chrome
 # Test Teardown    ปิด Chrome
 
 *** Variables ***
@@ -15,8 +15,7 @@ ${TIME}      90s
 ซื้อสินค้าบน Shopee ผ่าน Chrome
     กดเลือกภาษาอังกฤษ
     กดซื้อเลย
-    พิมพ์อีเมล์
-    พิมพ์พาสเวิร์ด
+    ลงชื่อผู้ใช้
     กด Enter
     หยุดรอพิมพ์ OTP
     กดตะกร้าสินค้า
@@ -27,29 +26,30 @@ ${TIME}      90s
 
 เปิด Shopee ด้วย Google Chrome
     Open Browser    ${URL}    chrome
+
 กดเลือกภาษาอังกฤษ
     Wait Until Page Contains Element    //button[@class="shopee-button-outline shopee-button-outline--primary-reverse "]
     Click Element    //button[@class="shopee-button-outline shopee-button-outline--primary-reverse "]
+
 กดซื้อเลย
     Wait Until Page Contains Element    //button[@class="btn btn-solid-primary btn--l YtgjXY"]
     Click Element    //button[@class="btn btn-solid-primary btn--l YtgjXY"]
-พิมพ์อีเมล์
+
+ลงชื่อผู้ใช้
     Wait Until Page Contains Element    //input[@placeholder="หมายเลขโทรศัพท์ / Email / ชื่อผู้ใช้"]
     Input Text    //input[@placeholder="หมายเลขโทรศัพท์ / Email / ชื่อผู้ใช้"]    ${EMAIL}
-พิมพ์พาสเวิร์ด
     Input Text    //input[@placeholder="รหัสผ่าน"]    ${PASSWORD}
+
 กด Enter
     Press Keys    //input[@placeholder="รหัสผ่าน"]    RETURN
+
 หยุดรอพิมพ์ OTP
     Sleep    ${TIME}
+
 กดตะกร้าสินค้า
     Click Element    //div[@class="cart-drawer-container"]
 
-
-
-
 ตรวจสอบ ราคา รายละเอียดสินค้า
-
     Wait Until Page Contains Element    class:cart-item-overview__name
     Element Should Contain    class:cart-item-overview__name    (Pre-Order) Xiaomi iHealth Blood Pressure Monitor 2 - เครื่องวัดความดัน รุ่น 2   
     Wait Until Page Contains Element    //*[@id="main"]//div[4]/div/span    
@@ -63,12 +63,6 @@ ${TIME}      90s
 
 กดปุ่ม สั่งสินค้า
     Press Keys    //*[@id="main"]/div/div[2]/div[2]/div[3]/div[2]/div[7]/div[5]/button    RETURN
-
-
-
-
-เปิด Browser
-    Open Browser    ${URL}    chrome
 
 # ปิด Chrome
 #     Close Browser
