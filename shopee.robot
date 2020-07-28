@@ -1,22 +1,10 @@
 *** Settings ***
-Library    SeleniumLibrary
+Resource    keywords.robot
 Test Setup    เปิด Shopee ด้วย Google Chrome
-# Test Teardown    ปิด Chrome
-
-*** Variables ***
-${URL}    https://shopee.co.th/(Pre-Order)-Xiaomi-iHealth-Blood-Pressure-Monitor-2-%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%94%E0%B8%B1%E0%B8%99-%E0%B8%A3%E0%B8%B8%E0%B9%88%E0%B8%99-2-i.8172430.1307643368
-# ${URL}    https://shopee.co.th/shopping_cart/?itemIds=1307643368&shopId=8172430
-${EMAIL}    test.test@outlook.co.th
-${PASSWORD}    AllianzG4
-${TIME}      90s
-${PRICE}    ฿11,160
-${PRODUCT_AMOUNT}    1
-${LOGISTIC_PRICE}    ฿50
-${TOTAL_PRICE}    ฿11,210
-
+Test Teardown    ปิด Chrome
 
 *** Test Cases ***
-ซื้อสินค้าบน Shopee ผ่าน Chrome
+ซื้อเครื่องวัดความดัน Xiaomi ใน Shopee ผ่าน Chrome
     # ขยายหน้าจอ
     กดเลือกภาษาอังกฤษ
     กดซื้อเลย
