@@ -17,6 +17,7 @@ ${TOTAL_PRICE}    ฿11,210
 
 *** Test Cases ***
 ซื้อสินค้าบน Shopee ผ่าน Chrome
+    # ขยายหน้าจอ
     กดเลือกภาษาอังกฤษ
     กดซื้อเลย
     ลงชื่อผู้ใช้
@@ -26,7 +27,13 @@ ${TOTAL_PRICE}    ฿11,210
     ตรวจสอบ ราคา รายละเอียดสินค้า
     กดปุ่ม สั่งสินค้า
     ตรวจสอบความถูกต้องของ ค่าใช้จ่ายทั้งหมด
-    #เลื่อนลงมาที่ปุ่มกดสั่งสินค้า    #กรณีบัคหน้าจอเล็ก(ที่ไม่ได้กดขยายจอ)แล้วมันหาปุ่มไม่เจอ เลยต้องเลื่อนลงมาให้เจอก่อน
+    เลื่อนลงมาที่ปุ่มกดสั่งสินค้า    #กรณีบัคหน้าจอเล็ก(ที่ไม่ได้กดขยายจอ)แล้วมันหาปุ่มไม่เจอ เลยต้องเลื่อนลงมาให้เจอก่อน
+    กดเปลี่ยนการวิธีชำระเงิน
+    คลิกเลือก iBanking / Mobile
+    ตรวจสอบธนาคารว่าครบ 5 ธนาคาร
+    คลิกเลือก ธนาคารกรุงไทย
+    ตรวจสอบความถูกต้องครั้งสุดท้าย
+    คลิกสั่งสินค้า ครั้งสุดท้าย
 
 *** Keywords ***
 
@@ -53,7 +60,7 @@ ${TOTAL_PRICE}    ฿11,210
     Sleep    ${TIME}
 
 กดตะกร้าสินค้า
-    Click Element    //div[@class="cart-drawer-container"]
+    Click Element    //*[@id="main"]/div/div[2]/div[2]/div[2]/div[2]/div[3]/div/div[5]/div/div/button[2]
 
 ตรวจสอบ ราคา รายละเอียดสินค้า
     Wait Until Page Contains Element    class:cart-item-overview__name
@@ -64,11 +71,17 @@ ${TOTAL_PRICE}    ฿11,210
     
     Wait Until Page Contains Element    class:cart-item__cell-total-price
     Element Should Contain     class:cart-item__cell-total-price    ฿11,160
-    Wait Until Page Contains Element    //*[@id="main"]/div/div[2]/div[2]/div[3]/div[2]/div[7]/div[4]/div[1]/div/div[2]
-    Element Should Contain     //*[@id="main"]/div/div[2]/div[2]/div[3]/div[2]/div[7]/div[4]/div[1]/div/div[2]    ฿11,160
+    Wait Until Page Contains Element    class:cart-page-footer-summary__subtotal-amount
+    Element Should Contain    class:cart-page-footer-summary__subtotal-amount    ฿11,160
 
 กดปุ่ม สั่งสินค้า
-    Press Keys    //*[@id="main"]/div/div[2]/div[2]/div[3]/div[2]/div[7]/div[5]/button    RETURN
+    # Press Keys    //*[@id="main"]/div/div[2]/div[2]/div[3]/div[2]/div[7]/div[5]/button    RETURN
+    # Click Element    xpath://*[@id="main"]/div/div[2]/div[2]/div[3]/div[2]/div[7]/div[5]/button
+    
+    Set Window Size    1920    800
+    
+    
+    Click Element    //*[@id="main"]/div/div[2]/div[2]/div[3]/div[2]/div[7]/div[5]/button/span
 
 ตรวจสอบความถูกต้องของ ราคาสินค้าชนิดนี้
     Sleep    2s
@@ -90,5 +103,43 @@ ${TOTAL_PRICE}    ฿11,210
     ตรวจสอบความถูกต้องของ ค่าจัดส่ง
     ตรวจสอบความถูกต้องของ ราคาของรวมค่าส่ง
 
-# ปิด Chrome
-#     Close Browser
+ขยายหน้าจอ
+    Set Window Size    1920    800
+
+กดเปลี่ยนการวิธีชำระเงิน  
+    Click Element    //div[@class="checkout-change-payment-method-button"]
+
+คลิกเลือก iBanking / Mobile 
+    # Wait Until Page Contains Element    //*[@id="main"]/div/div[2]/div[3]/div[4]/div[1]/div/div[1]/div[2]/span[3]/button    20s
+    Click Element    //*[@id="main"]/div/div[2]/div[3]/div[4]/div[1]/div/div[1]/div[2]/span[3]/button
+    # Click Button   button//*[@id="main"]/div/div[2]/div[3]/div[4]/div[1]/div/div[1]/div[2]/span[3]/button
+
+ตรวจสอบธนาคารว่าครบ 5 ธนาคาร  
+    Wait Until Page Contains Element    //img[@src="https://shopee.co.th/static/images/img_bankth_bbl.png"]     
+    Wait Until Page Contains Element    //img[@src="https://shopee.co.th/static/images/img_bankth_ktb.png"]           
+    Wait Until Page Contains Element    //img[@src="https://shopee.co.th/static/images/img_bankth_scb.png"]       
+    Wait Until Page Contains Element    //img[@src="https://mall.shopee.co.th/static/images/img_bankth_kbank.png"]        
+    Wait Until Page Contains Element    //img[@src="https://mall.shopee.co.th/static/images/img_bankth_bay.png"]          
+
+คลิกเลือก ธนาคารกรุงไทย
+    # Wait Until Page Contains Element    //img[@src="https://shopee.co.th/static/images/img_bankth_ktb.png"]
+    Click Element    //img[@src="https://shopee.co.th/static/images/img_bankth_ktb.png"]  
+     Press Keys    None    ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW 
+
+ตรวจสอบความถูกต้องครั้งสุดท้าย
+    Wait Until Page Contains Element    //div[@class="_38DBn- _2wZvga _2ZumAb"]    10s 
+    Element Should Contain     //div[@class="_38DBn- _2wZvga _2ZumAb"]    ฿11,160
+
+    Wait Until Page Contains Element    //*[@id="main"]/div/div[2]/div[3]/div[4]/div[2]/div[4]    10s
+    Element Should Contain     //*[@id="main"]/div/div[2]/div[3]/div[4]/div[2]/div[4]    ฿50
+
+    Wait Until Page Contains Element    //*[@id="main"]/div/div[2]/div[3]/div[4]/div[2]/div[6]    10s
+    Element Should Contain     //*[@id="main"]/div/div[2]/div[3]/div[4]/div[2]/div[6]    ฿11,210
+
+
+คลิกสั่งสินค้า ครั้งสุดท้าย
+    Click Element    //*[@id="main"]/div/div[2]/div[3]/div[4]/div[2]/div[7]/button
+
+ปิด Chrome
+    Close Browser
+
