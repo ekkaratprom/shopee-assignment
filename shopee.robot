@@ -28,7 +28,7 @@ ${TOTAL_PRICE}    ฿11,210
     กดปุ่ม สั่งสินค้า
     ตรวจสอบความถูกต้องของ ค่าใช้จ่ายทั้งหมด
     เลื่อนลงมาที่ปุ่มกดสั่งสินค้า    #กรณีบัคหน้าจอเล็ก(ที่ไม่ได้กดขยายจอ)แล้วมันหาปุ่มไม่เจอ เลยต้องเลื่อนลงมาให้เจอก่อน
-    กดเปลี่ยนการวิธีชำระเงิน
+    #กดเปลี่ยนการวิธีชำระเงิน     #กรณีเคยชำระเงินซื้อสินค้ามาก่อน
     คลิกเลือก iBanking / Mobile
     ตรวจสอบธนาคารว่าครบ 5 ธนาคาร
     คลิกเลือก ธนาคารกรุงไทย
@@ -124,7 +124,7 @@ ${TOTAL_PRICE}    ฿11,210
 คลิกเลือก ธนาคารกรุงไทย
     # Wait Until Page Contains Element    //img[@src="https://shopee.co.th/static/images/img_bankth_ktb.png"]
     Click Element    //img[@src="https://shopee.co.th/static/images/img_bankth_ktb.png"]  
-     Press Keys    None    ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW 
+    Press Keys    None    ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW 
 
 ตรวจสอบความถูกต้องครั้งสุดท้าย
     Wait Until Page Contains Element    //div[@class="_38DBn- _2wZvga _2ZumAb"]    10s 
