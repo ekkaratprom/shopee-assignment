@@ -142,3 +142,4 @@ ${TOTAL_PRICE}    ฿11,210
 
 ปิด Chrome
     Close Browser
+
